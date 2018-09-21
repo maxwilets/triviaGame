@@ -1,5 +1,19 @@
 
 $(document).ready(function (){
+    qna =[
+        {
+       question: "There are a lot of different power forms in shonen mangas, which isn't one?",
+       answerList: ["ki", "nen", "chakra", "the force"],
+       correct: 3
+       
+   }, 
+   {
+       question: "Which one is an anime killer clown",
+       answerList: ["Kakarott", "Hisoka", "Kisame", "Pennywise"],
+       correct: 1
+   }]
+   console.log(qna);
+   
     console.log("hi0");
     $(".start").on("click", function(){
        //using the hide() to change the layout of the page for certain events
@@ -8,10 +22,9 @@ $(document).ready(function (){
         gameStart()
     })
 })
-var question = 0;
+
 var answer = 0;
-var questionsRight = 0;
-var questionsWrong = 0;
+
 //the timer is going to be 30 increments
 var timer = 30;
 var countDown;
@@ -23,9 +36,15 @@ var timeDown = function(){
     $("#time").html("<h3>Time remaining " + timer + " seconds</h3>");
     if (timer === 0) {
         $("#time").hide();
-    }
+    };
+
 }
 var gameStart = function(){
-    
+    var question = 0;
+    turn = 0;
+var questionsRight = 0;
+var questionsWrong = 0;
+    cq = qna[turn].question;
+    $("#question").html(cq);
     run();
 };
