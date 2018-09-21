@@ -1,3 +1,12 @@
+
+div{
+    text-align: center;
+}
+.container{
+    border-style: double;
+    border-width: 8px;
+    border-color: slategray;
+}
 .main{
     background-color: #e6e6e6;
     font-family: 'Indie Flower', cursive;
@@ -5,6 +14,25 @@
 .title {
     padding: 10px;
 }
+.titleL {
+   display: block;
+   height: 250px;
+   width: 300px;
+}
 h2{
     font-size: 62px;
+}
+
+.start {
+    height: 175px;
+    width: 200px;
+    font-size: 40px;
+    border-style: double;
+    border-width: 5px;
+    border-color: slategray;
+    
+}
+.start:hover { 
+    background-color: #6e6e6d;
+    size: 105%
 }
