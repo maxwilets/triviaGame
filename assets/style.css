@@ -1,7 +1,6 @@
 
 div{
-    text-align: center;
-}
+    //*text-align: center;*/}
 .container{
     border-style: double;
     border-width: 8px;
@@ -35,4 +34,24 @@ h2{
 .start:hover { 
     background-color: #6e6e6d;
     size: 105%
+}
+#question{
+    text-align: center;
+    font-size: 34px;
+}
+
+.answerstyle {
+  align-self: center;
+}
+
+.board{
+    background-color:#6e6e6e;
+    font-style: 'Indie Flower', cursive;
+    align-content: center;
+    border-width: 3px;
+    border-style: double;
+    border-color: black
+}
+li{
+    font-size: 30px;
 }
