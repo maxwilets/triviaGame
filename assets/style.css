@@ -35,6 +35,12 @@ h2{
     background-color: #6e6e6d;
     size: 105%
 }
+li:hover {
+    background-color: #b2c2bf;
+    border-style: solid;
+    border-color: #6e6e6d;
+    border-width: 1px;
+}
 #question{
     text-align: center;
     font-size: 34px;
@@ -45,12 +51,13 @@ h2{
 }
 
 .board{
-    background-color:#6e6e6e;
+    background-color:#e6e6e6;
     font-style: 'Indie Flower', cursive;
     align-content: center;
     border-width: 3px;
     border-style: double;
-    border-color: black
+    border-color: black;
+    padding-left: 100px;
 }
 li{
     font-size: 30px;

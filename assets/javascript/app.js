@@ -13,7 +13,7 @@ $(document).ready(function () {
             correct: 1
         }]
 
-    
+
     $(".start").on("click", function () {
         //using the hide() to change the layout of the page for certain events
         $(".board").show();
@@ -25,7 +25,7 @@ $(".board").hide();
 
 var timeUp= false;
 var answer = 0;
-
+var gifArray= ["gif1",]
 //the timer is going to be 30 increments
 var timer = 30;
 var countDown;
@@ -46,6 +46,7 @@ var timeDown = function () {
 function stop() {
     clearInterval(countDown);
     timer= 30;
+    
 }
 
 var gameStart = function () {
@@ -77,6 +78,15 @@ var gameStart = function () {
         if (select == (answer)) {
             console.log("yes");
             stop();
+            $("#question").html("thats correct!");
+            $("#answer").empty();
+            $("#gif").html('<img src = "assets/images/' + gifArray[turn]+ '.gif" width=400px>');
+            turn ++;
+            $("#question").empty();
+            $("#question").html(cq);
+            for (i = 0; i < 4; i++) {
+                $("#answer").append("<li>" + qna[turn].answerList[i] + "</li>");
+            }
 
             
         };
