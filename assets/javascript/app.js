@@ -13,7 +13,9 @@ $(document).ready(function () {
             correct: 1
         }]
 
+    var gifTimeOut = setTimeout(function () {
 
+    }, 5000); 
     $(".start").on("click", function () {
         //using the hide() to change the layout of the page for certain events
         $(".board").show();
@@ -25,7 +27,7 @@ $(".board").hide();
 
 var timeUp= false;
 var answer = 0;
-var gifArray= ["gif1",]
+var gifArray= ["gif1","hisok"]
 //the timer is going to be 30 increments
 var timer = 30;
 var countDown;
@@ -48,28 +50,34 @@ function stop() {
     timer= 30;
     
 }
+turn = 0;
 
 var gameStart = function () {
     run();
+    $("#gif").empty();
     if (timeUp === true) {
         console.log("its over")
     }
 
     var question = 0;
-    turn = 0;
+    
     var questionsRight = 0;
     var questionsWrong = 0;
     correct1 = qna[turn].correct;
     answer = qna[turn].answerList[correct1]
     console.log(answer);
     cq = qna[turn].question;
-    $("#question").html(cq);
-    for (i = 0; i < 4; i++) {
+    $("#question").html(qna[turn].question);
+     
+     var ansPop= function() { 
+         for (var i = 0; i < 4; i++) {
         $("#answer").append("<li>" + qna[turn].answerList[i] + "</li>");
+    }};
+    ansPop();
 
-        console.log(qna[turn].answerList[i])
+       
         
-    }
+    
    
     
     $("li").on("click", function () {
@@ -83,15 +91,24 @@ var gameStart = function () {
             $("#gif").html('<img src = "assets/images/' + gifArray[turn]+ '.gif" width=400px>');
             turn ++;
             $("#question").empty();
-            $("#question").html(cq);
-            for (i = 0; i < 4; i++) {
-                $("#answer").append("<li>" + qna[turn].answerList[i] + "</li>");
-            }
-
-            
+          
+           // gameStart();
+            questionsRight++
+            setTimeout(gameStart, 5000);
         };
         if (select != (answer)) {
             console.log("no");
+            stop();
+            $("#question").html("No, thats not correct");
+            $("#answer").empty();
+            
+            $("#gif").html('<img src= "assets/images/' + gifArray[turn] + '.gif" width=400px>');
+            
+          //  $("#question").html(qna[turn].question);
+         // gameStart(); 
+          console.log(cq)
+          turn ++;
+          setTimeout(gameStart, 5000);
         };
 
     })

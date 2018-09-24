@@ -1,6 +1,6 @@
 
 div{
-    //*text-align: center;*/}
+    /*text-align: center;*/}
 .container{
     border-style: double;
     border-width: 8px;
@@ -57,8 +57,11 @@ li:hover {
     border-width: 3px;
     border-style: double;
     border-color: black;
-    padding-left: 100px;
+    padding-left: 75px;
 }
 li{
     font-size: 30px;
+}
+#gif{
+    padding-left: 120px
 }
