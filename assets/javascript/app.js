@@ -18,10 +18,46 @@ $(document).ready(function () {
              correct: 1
          },
         {
-            question: "Which of these isn't a quirk?",
+            question: "In My Hero Acadamia which of these isn't a quirk?",
             answerList: ["Sugar Rush", "Explosion", "None for One", "Cremation"],
             correct: 2
-        }]
+        },
+        {
+            question: "In Naruto what chakra element can't Kakashi use",
+            answerList: ["Fire", "Water", "Earth", "Wind"],
+            correct: 3
+        },
+        {
+            question: "Which one of these guys was a major Dragon Ball villian",
+            answerList: ["Frieza", "Vegeta", "Tien", "Cell"],
+            correct: 2
+        },
+        {
+            question: "In the Pokemon Adventures manga, who was the true leader of Neo Team Rocket?",
+            answerList:["Giovani", "Pryce", "Archie", "Silver"],
+            correct: 1
+        },
+        {
+            question: "In Bleach which member of the Espada symbolized emptieness",
+            answerList:["Ulquiorra", "Stark", "Ichigo", "Nel"],
+            correct: 0,
+        },
+        {
+            question: "In the Yugioh manga which monster never got a toon counterpart?",
+            answerList: ["Ancient Gear Golem", "Dark Magician", "Dark Magician Girl", "Ryu-Ran"],
+            correct: 1
+        },
+        {
+            question: "Who is the man in the mask in Naruto",
+            answerList: ["Obito", "Madara", "Kagyua", "Black Zetsu"],
+            correct: 0
+        },
+        {
+            question: "In Boruto who isn't on team Konohamaru",
+            answerList: ["Boruto", "Shikidai", "Sarada", "Mitsuki"],
+            correct: 1,
+        }
+    ]
 
     
     $(".start").on("click", function () {
@@ -35,7 +71,7 @@ $(".board").hide();
 
 var timeUp= false;
 var answer = 0;
-var gifArray= ["gif1","hisok", "nimbus", "boko"]
+var gifArray= ["gif1","hisok", "nimbus", "boko", "kakashi", "tien","rocket", "espada", "toon", "obito", "boruto"]
 //the timer is going to be 30 increments
 var timer = 30;
 var countDown;
