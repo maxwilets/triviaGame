@@ -8,14 +8,22 @@ $(document).ready(function () {
 
         },
         {
-            question: "Which one is an anime killer clown",
+            question: "Which one is an anime killer clown?",
             answerList: ["Kakarott", "Hisoka", "Kisame", "Pennywise"],
             correct: 1
+        },
+         {
+             question: "Which of these can fly?",
+             answerList: ["Flying Raijin", "Nimbus", "Winged Saint", "Mantine"],
+             correct: 1
+         },
+        {
+            question: "Which of these isn't a quirk?",
+            answerList: ["Sugar Rush", "Explosion", "None for One", "Cremation"],
+            correct: 2
         }]
 
-    var gifTimeOut = setTimeout(function () {
-
-    }, 5000); 
+    
     $(".start").on("click", function () {
         //using the hide() to change the layout of the page for certain events
         $(".board").show();
@@ -27,7 +35,7 @@ $(".board").hide();
 
 var timeUp= false;
 var answer = 0;
-var gifArray= ["gif1","hisok"]
+var gifArray= ["gif1","hisok", "nimbus", "boko"]
 //the timer is going to be 30 increments
 var timer = 30;
 var countDown;
@@ -47,6 +55,7 @@ var timeDown = function () {
 };
 function stop() {
     clearInterval(countDown);
+    $("#time").hide();
     timer= 30;
     
 }
