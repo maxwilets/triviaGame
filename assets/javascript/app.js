@@ -67,7 +67,7 @@ $(document).ready(function () {
             question: "In Boruto who isn't on team Konohamaru",
             answerList: ["Boruto", "Shikidai", "Sarada", "Mitsuki"],
             correct: 1,
-            response: ["Correct! How good is Boruto am I right?", "Incorect, you should watch Boruto, it's good"]
+            response: ["Correct! How good is Boruto am I right?", "Incorrect, you should watch Boruto, it's good"]
         }
     ]
 
@@ -87,8 +87,9 @@ $(document).ready(function () {
         $(".board").show();
         $(".title").hide();
         $("button").hide();
-        gameStart()
+        gameStart();
     })
+  gameReset = true;
 $(".board").hide();
 
 var questionsRight = 0;
@@ -102,24 +103,38 @@ var timer = 20;
 var countDown;
 function run() {
     $("#time").show();
-    countDown = setInterval(timeDown, 500
+    countDown = setInterval(timeDown, 1000
     )
 }
 //sets the timer and the reaction if the player runs out of time on a question
 var timeDown = function () {
     timer--;
     $("#time").html("<h3>Time remaining " + timer + " seconds</h3>");
+ 
     if (timer <= 0) {
         stop();
         timeUp = true;
         $("#answer").empty();
         $("#question").html("Your time is up it is over");
         $("#gif").html('<img src = "assets/images/clock.gif" width= 400px>');
-        setTimeout(gameStart, 5000);
+        setTimeout(turnStart, 5000);
         turn++;
+        questionsWrong++;
         
 
+    };
+           
+    if ((turn === qna.length)) {
+        stop();
+        timeUp = true;
+        $("#answer").empty();
+        $("#question").html("Your time is up it is over");
+        $("#gif").html('<img src = "assets/images/clock.gif" width= 400px>');
+        setTimeout(gameOver, 5000);
+        turn++;
+        questionsWrong++;
     }
+   
 };
 function stop() {
     clearInterval(countDown);
@@ -130,15 +145,20 @@ function stop() {
 turn = 0;
 
 
+//this starts the questions
 
 var gameStart = function () {
-  // $("#time").show();
+    questionsRight=0;
+    questionsWrong=0;
+    turn=0;
+    turnStart();
+    $("#result1").empty();
+    $("#result2").empty();
+}
+    
+var turnStart = function () {
     run();
     $("#gif").empty();
-    
-    var question = 0;
-    
-   
     correct1 = qna[turn].correct;
     answer = qna[turn].answerList[correct1]
     console.log(answer);
@@ -148,24 +168,35 @@ var gameStart = function () {
      var ansPop= function() { 
          for (var i = 0; i < 4; i++) {
         $("#answer").append("<li>" + qna[turn].answerList[i] + "</li>");
-    }};
+    }
+};
     ansPop();
 
-       
-        
-    
-   
+
+
+
     
     $("li").on("click", function () {
         select = (this.innerHTML);
-            if ((select == answer) && (turn == qna.length-1)){
+            if ((select === answer) && (turn == qna.length-1)){
                 stop();
                 $("#question").html(qna[turn].response[0]);
                 $("#answer").empty();
+                questionsRight++
                 $("#gif").html('<img src = "assets/images/' + gifArray[turn] + '.gif" height=250px; width=400px>');
                 setTimeout(gameOver, 5000);
             }
-      else  if (select == (answer)) {
+            else if ((select != answer) && (turn == qna.length-1)) {
+                stop();
+                $("#question").html(qna[turn].response[1]);
+                $("#answer").empty();
+                questionsWrong++
+                $("#gif").html('<img src = "assets/images/' + gifArray[turn] + '.gif" height=250px; width=400px>');
+                setTimeout(gameOver, 5000);
+            }
+            
+            
+      else if (select == (answer)) {
             console.log("yes");
             stop();
             
@@ -173,11 +204,8 @@ var gameStart = function () {
             $("#answer").empty();
             $("#gif").html('<img src = "assets/images/' + gifArray[turn]+ '.gif" height= 250px; width=400px>');
             turn ++;
-          
-          
-           // gameStart();
             questionsRight++
-            setTimeout(gameStart, 5000);
+            setTimeout(turnStart, 5000);
         }
         else if (select != (answer)) {
             console.log("no");
@@ -192,9 +220,11 @@ var gameStart = function () {
           console.log(cq)
           turn ++;
           questionsWrong++;
-          setTimeout(gameStart, 5000);
+          setTimeout(turnStart, 5000);
         };
 
     })
+
 };
+
 })
