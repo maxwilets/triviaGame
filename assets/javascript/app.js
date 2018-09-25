@@ -131,7 +131,7 @@ var timeDown = function () {
         $("#question").html("Your time is up it is over");
         $("#gif").html('<img src = "assets/images/clock.gif" width= 400px>');
         setTimeout(gameOver, 5000);
-        turn++;
+        
        
     }
    
