@@ -1,5 +1,6 @@
 
 $(document).ready(function () {
+    $("#restartB").hide();
     qna = [
         {
             question: "There are a lot of different power forms in shonen mangas, which isn't one?",
@@ -48,7 +49,7 @@ $(document).ready(function () {
             question: "In Bleach which member of the Espada symbolized emptieness",
             answerList:["Ulquiorra", "Stark", "Ichigo", "Nel"],
             correct: 0,
-            response: ["Correct, that was a cool fight", "No, the correct andwer is Ulquiorra"]
+            response: ["Correct, that was a cool fight", "No, the correct answer is Ulquiorra"]
         },
         {
             question: "In the Yugioh manga which monster never got a toon counterpart?",
@@ -60,7 +61,7 @@ $(document).ready(function () {
             question: "Who is the man in the mask in Naruto",
             answerList: ["Obito", "Madara", "Kagyua", "Black Zetsu"],
             correct: 0,
-            response: ["Correct, you know you're Naruto", "The correct answer was Obito, you don't know you're Naruto"]
+            response: ["Correct, you know your Naruto", "The correct answer was Obito, you don't know your Naruto"]
         },
         {
             question: "In Boruto who isn't on team Konohamaru",
@@ -69,6 +70,16 @@ $(document).ready(function () {
             response: ["Correct! How good is Boruto am I right?", "Incorect, you should watch Boruto, it's good"]
         }
     ]
+
+    var gameOver = function () {
+        stop();
+        turn = 0;
+        $("#gif").empty();
+        $("#question").html("That's the end of the game, lets see how you did!");
+        $("#result1").html("Questions Right: " + questionsRight);
+        $("#result2").html("Questions Wrong: " + questionsWrong);
+       $("#restartB").show();
+    }
 
     
     $(".start").on("click", function () {
@@ -80,45 +91,54 @@ $(document).ready(function () {
     })
 $(".board").hide();
 
-var timeUp= false;
+var questionsRight = 0;
+var questionsWrong = 0;
+
 var answer = 0;
-var gifArray= ["gif1","hisok", "nimbus", "boko", "kakashi", "tien","rocket", "espada", "toon", "obito", "boruto"]
+var gifArray= ["gif1","hisok", "nimbus", "boko", "kakashi", "tien","rocket", "espada", "toon", "obito", "boruto"];
+var clock = "clock";
 //the timer is going to be 30 increments
-var timer = 30;
+var timer = 20;
 var countDown;
 function run() {
+    $("#time").show();
     countDown = setInterval(timeDown, 500
     )
 }
+//sets the timer and the reaction if the player runs out of time on a question
 var timeDown = function () {
     timer--;
     $("#time").html("<h3>Time remaining " + timer + " seconds</h3>");
-    if (timer === 0) {
-        $("#time").hide();
+    if (timer <= 0) {
+        stop();
         timeUp = true;
-
+        $("#answer").empty();
+        $("#question").html("Your time is up it is over");
+        $("#gif").html('<img src = "assets/images/clock.gif" width= 400px>');
+        setTimeout(gameStart, 5000);
+        turn++;
+        
 
     }
 };
 function stop() {
     clearInterval(countDown);
     $("#time").hide();
-    timer= 30;
+    timer= 20;
     
 }
 turn = 0;
 
+
+
 var gameStart = function () {
+  // $("#time").show();
     run();
     $("#gif").empty();
-    if (timeUp === true) {
-        console.log("its over")
-    }
-
+    
     var question = 0;
     
-    var questionsRight = 0;
-    var questionsWrong = 0;
+   
     correct1 = qna[turn].correct;
     answer = qna[turn].answerList[correct1]
     console.log(answer);
@@ -138,32 +158,40 @@ var gameStart = function () {
     
     $("li").on("click", function () {
         select = (this.innerHTML);
-
-        if (select == (answer)) {
+            if ((select == answer) && (turn == qna.length-1)){
+                stop();
+                $("#question").html(qna[turn].response[0]);
+                $("#answer").empty();
+                $("#gif").html('<img src = "assets/images/' + gifArray[turn] + '.gif" height=250px; width=400px>');
+                setTimeout(gameOver, 5000);
+            }
+      else  if (select == (answer)) {
             console.log("yes");
             stop();
+            
             $("#question").html(qna[turn].response[0]);
             $("#answer").empty();
-            $("#gif").html('<img src = "assets/images/' + gifArray[turn]+ '.gif" width=400px>');
+            $("#gif").html('<img src = "assets/images/' + gifArray[turn]+ '.gif" height= 250px; width=400px>');
             turn ++;
-            $("#question").empty();
+          
           
            // gameStart();
             questionsRight++
             setTimeout(gameStart, 5000);
-        };
-        if (select != (answer)) {
+        }
+        else if (select != (answer)) {
             console.log("no");
             stop();
             $("#question").html(qna[turn].response[1]);
             $("#answer").empty();
             
-            $("#gif").html('<img src= "assets/images/' + gifArray[turn] + '.gif" width=400px>');
+            $("#gif").html('<img src= "assets/images/' + gifArray[turn] + '.gif" height=250px; width=400px>');
             
           //  $("#question").html(qna[turn].question);
          // gameStart(); 
           console.log(cq)
           turn ++;
+          questionsWrong++;
           setTimeout(gameStart, 5000);
         };
 
