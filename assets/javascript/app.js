@@ -132,7 +132,7 @@ var timeDown = function () {
         $("#gif").html('<img src = "assets/images/clock.gif" width= 400px>');
         setTimeout(gameOver, 5000);
         turn++;
-        questionsWrong++;
+       
     }
    
 };
