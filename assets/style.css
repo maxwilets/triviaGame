@@ -33,7 +33,8 @@ h2{
 }
 .start:hover { 
     background-color: #6e6e6d;
-    size: 105%
+    size: 105%;
+    color: #e6e6e6
 }
 li:hover {
     background-color: #b2c2bf;
